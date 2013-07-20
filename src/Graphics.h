@@ -14,6 +14,7 @@
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
+#include <SDL/SDL_opengl.h>
 
 int init_screen();
 
@@ -21,5 +22,8 @@ SDL_Surface *load_image(char *path);
 void apply_surface(SDL_Rect *offset_src, SDL_Rect *offset_dest, SDL_Surface *surface, SDL_Surface *destination);
 
 SDL_Surface *get_screen();
+
+void update();
+void render();
 
 #endif /* GRAPHICS_H_ */

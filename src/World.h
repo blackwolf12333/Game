@@ -20,7 +20,7 @@ typedef struct entity_t {
 typedef struct world_t {
 	SDL_Surface *landscape;
 	Entity *player;
-	SDL_Surface **environment;
+	Entity **environment;
 } World;
 
 int init_world();

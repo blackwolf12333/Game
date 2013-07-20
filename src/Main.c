@@ -45,10 +45,16 @@ int main(void) {
 				if(SDL_GetKeyState(NULL)[SDLK_LEFT]) {
 					move_player(-STEP, 0);
 				}
+				if(SDL_GetKeyState(NULL)[SDLK_ESCAPE]) {
+					quit = 1;
+					break;
+				}
 				break;
 			}
 		}
 		paint_world();
+		/*update();
+		render();*/
 	}
 
 	destroy_world();

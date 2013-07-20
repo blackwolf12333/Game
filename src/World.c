@@ -8,8 +8,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "World.h"
+#include "WorldLoader.h"
 
-#define WORLD_DIR "/home/blackwolf12333/workspace/SDLTut0/world"
+#define WORLD_DIR "/home/blackwolf12333/workspace/Game/world"
 
 World *world = NULL;
 
@@ -77,11 +78,13 @@ int init_world() {
 	world->landscape = NULL;
 	world->player = NULL;
 
-	world->landscape = load_image(WORLD_DIR "/landscape.png");
+	/*world->landscape = load_image(WORLD_DIR "/landscape.png");
 	world->player = malloc(sizeof(*world->player));
 	world->player->surface = load_image(WORLD_DIR "/characters/player0.png");
 	world->player->x = 320;
-	world->player->y = 240;
+	world->player->y = 240;*/
+
+	world = load_world(WORLD_DIR "/world_description.wd");
 
 	return 0;
 }
