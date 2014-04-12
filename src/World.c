@@ -10,7 +10,7 @@
 #include "World.h"
 #include "WorldLoader.h"
 
-#define WORLD_DIR "/home/blackwolf12333/workspace/Game/world"
+#define WORLD_DIR "../world"
 
 World *world = NULL;
 

@@ -5,7 +5,11 @@
  *      Author: blackwolf12333
  */
 
+#define _POSIX_C_SOURCE 200809L
+#define _XOPEN_SOURCE 700
+
 #include "WorldLoader.h"
+#include <stdio.h>
 #include <string.h>
 
 struct node {
@@ -19,6 +23,8 @@ struct parser_data {
 
 int get_file_size(FILE *fd) {
 	int size;
+
+	size = 0;
 
 	while(fgetc(fd) != '\n') {
 		size++;
@@ -100,7 +106,8 @@ struct parser_data *parse(char *path) {
 
 char *get_character_path(struct parser_data *data, char *path) {
 	int i;
-	for(i = 0; i < sizeof(data->nodes); i++) {
+	int size = sizeof(data->nodes);
+	  for(i = 0; i < size; i++) {
 		if((data->nodes[i].data[0] == NULL) || (strcmp(data->nodes[i].name, "") == 0)) {
 			break;
 		}
@@ -125,13 +132,16 @@ Entity *init_player(struct parser_data *data, char *path) {
 	player->surface = load_image(character_path);
 
 	int i, j;
-	for(i = 0; i < sizeof(data->nodes); i++) {
+	int size = sizeof(data->nodes);
+	int dataSize;
+	for(i = 0; i < size; i++) {
 		if((data->nodes[i].data[0] == NULL) || (strcmp(data->nodes[i].name, "") == 0)) {
 			break;
 		}
 		if((data->nodes[i].data[0] != NULL)) {
 			if(strcmp(data->nodes[i].name, "characters")) {
-				for(j = 0; j < sizeof(data->nodes[i].data); i++) {
+				dataSize = sizeof(data->nodes[i].data);
+				for(j = 0; j < dataSize; i++) {
 					char *name = strtok(data->nodes[i].data[j], ":");
 
 					if(strcmp(name, "player0") == 0) {
@@ -139,6 +149,7 @@ Entity *init_player(struct parser_data *data, char *path) {
 						player->y = (int) strtol(strtok(NULL, ":"), (char**)NULL, 10);
 						break;
 					}
+					dataSize = sizeof(data->nodes[i].data);
 				}
 			}
 		}
